@@ -4,13 +4,16 @@ import {
   faCartShopping,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-
+import Logo from "../../../public/logo.svg";
+import Categories from "./MainNavigation";
 const Header = () => {
   return (
-    <div className="flex flex-col gap-y-10">
+    <div className="flex flex-col gap-y-10 shadow-lg py-5 px-28">
       <div className="flex justify-around items-center pt-6">
-        <div>Logo</div>
-        <div className="flex justify-center items-center border-2 border-black rounded">
+        <div className="w-12 ">
+          <img className="w-full" src={Logo} alt="logo" />
+        </div>
+        <div className="flex justify-between items-center border border-gray-400 w-1/2 rounded">
           <div className="flex justify-center items-center py-2">
             <div className="px-2">
               <FontAwesomeIcon
@@ -26,15 +29,15 @@ const Header = () => {
             </div>
           </div>
           <div>
-            <button className="bg-slate-300 p-2">ARA</button>
+            <button className="bg-slate-300 rounded-r  p-2">Search</button>
           </div>
         </div>
         <div className="flex justify-between items-center gap-x-4">
-          <button className="py-2 px-4 border-2 border-black rounded flex items-center justify-center gap-x-2">
+          <button className="py-2 px-4 border border-gray-400 rounded flex items-center justify-center gap-x-2">
             <FontAwesomeIcon icon={faUser} style={{ color: "#8490a9" }} />
             Profile
           </button>
-          <button className="py-2 px-4 border-2 border-black rounded flex items-center justify-center gap-x-2">
+          <button className="py-2 px-4 border border-gray-400 rounded flex items-center justify-center gap-x-2">
             <FontAwesomeIcon
               icon={faCartShopping}
               style={{ color: "#8490a9" }}
@@ -43,26 +46,7 @@ const Header = () => {
           </button>
         </div>
       </div>
-      <div className="flex justify-around items-center">
-        <a href="#" className="border-2 rounded border-black py-2 px-4">
-          Electronics
-        </a>
-        <a href="#" className="border-2 rounded border-black py-2 px-4">
-          Personal Care
-        </a>
-        <a href="#" className="border-2 rounded border-black py-2 px-4">
-          Groceries
-        </a>
-        <a href="#" className="border-2 rounded border-black py-2 px-4">
-          Home Decoration
-        </a>
-        <a href="#" className="border-2 rounded border-black py-2 px-4">
-          Clothes
-        </a>
-        <a href="#" className="border-2 rounded border-black py-2 px-4">
-          Accessories
-        </a>
-      </div>
+      <Categories />
     </div>
   );
 };
