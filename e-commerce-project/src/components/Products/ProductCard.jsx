@@ -7,9 +7,9 @@ const ProductCard = ({ product }) => {
     <Link to={`/${product.id}`}>
       <div
         key={product.id}
-        className=" flex flex-col group relative border rounded-md p-6 cursor-pointer"
+        className=" flex flex-col group relative border rounded-3xl p-6 cursor-pointer hover:scale-105"
       >
-        <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+        <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none lg:h-80">
           <img
             src={product.thumbnail}
             alt={product.title}
@@ -18,7 +18,7 @@ const ProductCard = ({ product }) => {
         </div>
         <div className="mt-4 flex justify-between">
           <div>
-            <h3 className="text-sm text-gray-700">
+            <h3 className="text-sm text-gray-700 font-bold">
               <span aria-hidden="true" className="absolute inset-0" />
               {product.title}
             </h3>
@@ -36,7 +36,7 @@ const ProductCard = ({ product }) => {
           <span>{product.rating}</span>
         </div>
         <div className="mt-4 w-full">
-          <Button className="w-full">Add to Cart</Button>
+          <Button className="w-full bg-[#4361EE] font-semibold py-3 text-sm text-white uppercase rounded-xl">Add to Cart</Button>
         </div>
       </div>
     </Link>
