@@ -1,58 +1,56 @@
 import { NavLink } from "react-router-dom";
 
 const MainNavigation = () => {
+  const Category = [
+    {
+      id: 1,
+      name: "Electronics",
+      link: "/electronics",
+    },
+    {
+      id: 2,
+      name: "Personal Care",
+      link: "/personal-care",
+    },
+    {
+      id: 3,
+      name: "Groceries",
+      link: "/groceries",
+    },
+    {
+      id: 4,
+      name: "Home Decoration",
+      link: "/home-decoration",
+    },
+    {
+      id: 5,
+      name: "Clothes",
+      link: "/clothes",
+    },
+    {
+      id: 6,
+      name: "Accessories",
+      link: "/accessories",
+    },
+  ];
+
   return (
-    <nav>
-      <ul className="list-none flex justify-between items-center flex-wrap">
-        <li>
-          <NavLink
-            to="electronics"
-            className="border rounded border-gray-400 py-2 px-10"
-          >
-            Electronics
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="personal-care"
-            className="border rounded border-gray-400 py-2 px-10"
-          >
-            Personal Care
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="groceries"
-            className="border rounded border-gray-400 py-2 px-10"
-          >
-            Groceries
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="home-decoration"
-            className="border rounded border-gray-400 py-2 px-10"
-          >
-            Home Decoration
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="clothes"
-            className="border rounded border-gray-400 py-2 px-10"
-          >
-            Clothes
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="accessories"
-            className="border rounded border-gray-400 py-2 px-10"
-          >
-            Accessories
-          </NavLink>
-        </li>
-      </ul>
+    <nav className="flex justify-between items-center">
+      {Category.map((a, index) => (
+        <ul
+          key={index}
+          className="list-none flex justify-between items-center flex-wrap"
+        >
+          <li>
+            <NavLink
+              to={a.link}
+              className="border rounded border-gray-400 py-2 px-10"
+            >
+              {a.name}
+            </NavLink>
+          </li>
+        </ul>
+      ))}
     </nav>
   );
 };
