@@ -4,7 +4,7 @@ import RootLayout from "./pages/RootLayout";
 import HomePage from "./pages/HomePage";
 import "./App.css";
 import Category from "./pages/Category";
-
+import ProductDetails from "./pages/ProductDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,6 +17,16 @@ const router = createBrowserRouter([
       {
         path: ":categoryName",
         element: <Category />,
+        children: [
+          {
+            path: ":productId",
+            element: <ProductDetails />,
+          },
+        ],
+      },
+      {
+        path: ":productId",
+        element: <ProductDetails />,
       },
     ],
   },

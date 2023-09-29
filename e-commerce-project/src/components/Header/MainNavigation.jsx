@@ -1,56 +1,60 @@
-import { NavLink } from "react-router-dom";
+import Dropdown from "./Dropdown";
 
 const MainNavigation = () => {
-  const Category = [
+  const Categories = [
     {
       id: 1,
       name: "Electronics",
-      link: "/electronics",
+      subCategories: ["smartphones", "laptops", "automotive", "motorcycle"],
     },
     {
       id: 2,
       name: "Personal Care",
-      link: "/personal-care",
+      subCategories: ["skincare", "fragrances"],
     },
     {
       id: 3,
       name: "Groceries",
-      link: "/groceries",
+      subCategories: ["groceries"],
     },
     {
       id: 4,
       name: "Home Decoration",
-      link: "/home-decoration",
+      subCategories: ["home-decoration", "furniture", "lighting"],
     },
     {
       id: 5,
       name: "Clothes",
-      link: "/clothes",
+      subCategories: [
+        "tops",
+        "womens-dresses",
+        "womens-shoes",
+        "mens-shirts",
+        "mens-shoes",
+      ],
     },
     {
       id: 6,
       name: "Accessories",
-      link: "/accessories",
+      subCategories: [
+        "mens-watches",
+        "womens-watches",
+        "womens-bags",
+        "womens-jewellery",
+        "sunglasses",
+      ],
     },
   ];
 
   return (
-    <nav className="flex justify-between items-center">
-      {Category.map((a, index) => (
-        <ul
-          key={index}
-          className="list-none flex justify-between items-center flex-wrap"
-        >
-          <li>
-            <NavLink
-              to={a.link}
-              className="border rounded border-gray-400 py-2 px-10"
-            >
-              {a.name}
-            </NavLink>
+    <nav className="flex justify-center">
+      <ul className="list-none flex justify-between items-center gap-5 flex-wrap">
+        {Categories.map((category, index) => (
+          <li key={index}>
+            <Dropdown category={category} />
           </li>
-        </ul>
-      ))}
+        ))}
+      </ul>
     </nav>
   );
 };
