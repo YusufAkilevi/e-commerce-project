@@ -3,6 +3,7 @@ import {
   faMagnifyingGlass,
   faCartShopping,
   faUser,
+  faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 import Logo from "../../logo.svg";
 import MainNavigation from "./MainNavigation";
@@ -29,22 +30,20 @@ const Header = () => {
             </div>
           </div>
           <div>
-            <button className="bg-slate-500 hover:bg-slate-300 text-white rounded-r p-2">
+            <button className="bg-gray-600 hover:bg-gray-400 text-white rounded-r p-2">
               Search
             </button>
           </div>
         </div>
         <div className="flex justify-between items-center gap-x-4">
-          <button className="py-2 px-4 border border-gray-400 rounded flex items-center justify-center gap-x-2 font-medium">
-            <FontAwesomeIcon icon={faUser} style={{ color: "#8490a9" }} />
+          <button className="py-2 px-4 bg-gray-600 text-white hover:bg-gray-400 rounded flex items-center justify-center gap-x-2 font-medium">
+            <FontAwesomeIcon icon={faUser} style={{ color: "#fff" }} />
             Profile
           </button>
-          <button className="py-2 px-4 border border-gray-400 rounded flex items-center justify-center gap-x-2 font-medium">
-            <FontAwesomeIcon
-              icon={faCartShopping}
-              style={{ color: "#8490a9" }}
-            />
+          <button className="py-2 px-4 bg-gray-600 text-white hover:bg-gray-400 rounded flex items-center justify-center gap-x-2 font-medium">
+            <FontAwesomeIcon icon={faCartShopping} style={{ color: "#fff" }} />
             Cart
+            <span className="bg-slate-500  rounded-lg px-2">0</span>
           </button>
         </div>
       </div>

@@ -1,5 +1,7 @@
 import { Rating } from "react-simple-star-rating";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping, faHeart } from "@fortawesome/free-solid-svg-icons";
 
 import Button from "../UI/Button";
 const ProductCard = ({ product }) => {
@@ -35,8 +37,9 @@ const ProductCard = ({ product }) => {
         </p>
       </Link>
       <div className="mt-auto w-full">
-        <Button className="w-full hover:bg-gray-400 hover:text-white">
-          Add to Cart
+        <Button className="flex items-center justify-center bg-gray-600 text-white hover:bg-gray-400 gap-2.5 w-full hover:bg-gray-400 hover:text-white">
+          <FontAwesomeIcon icon={faCartShopping} style={{ color: "#fff" }} />
+          <span>Add to Cart</span>
         </Button>
       </div>
     </div>
