@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+
 import ProductCard from "./ProductCard";
 import Button from "../UI/Button";
 const ProductList = (props) => {
@@ -9,10 +12,22 @@ const ProductList = (props) => {
         ))}
       </div>
       {props.curPage <= props.maxPage && (
-        <div className="flex gap-2.5 justify-center items-center w-full mb-20 text-[#F72585]">
-          {props.curPage !== 1 && <Button onClick={props.onBack}>Back</Button>}
+        <div className="flex gap-2.5 justify-center items-center w-full mb-20 font-semibold">
+          {props.curPage !== 1 && (
+            <Button
+              className="bg-gradient-to-br from-[#8767e7] to-[#7209B7] hover:ring-1 hover:ring-purple-500"
+              onClick={props.onBack}
+            >
+              <FontAwesomeIcon icon={faArrowLeft} style={{ color: "#fff" }} />
+            </Button>
+          )}
           {props.curPage !== props.maxPage && (
-            <Button onClick={props.onNext}>Next</Button>
+            <Button
+              className="bg-gradient-to-br from-[#8767e7] to-[#7209B7] hover:ring-1 hover:ring-purple-500"
+              onClick={props.onNext}
+            >
+              <FontAwesomeIcon icon={faArrowRight} style={{ color: "#fff" }} />
+            </Button>
           )}
         </div>
       )}
