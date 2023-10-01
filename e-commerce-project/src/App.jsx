@@ -8,7 +8,6 @@ import ProductDetails from "./pages/ProductDetails";
 const router = createBrowserRouter([
   {
     path: "/",
-
     element: <RootLayout />,
     children: [
       {
@@ -18,9 +17,15 @@ const router = createBrowserRouter([
       {
         path: ":categoryName",
         element: <Category />,
+        children: [
+          {
+            path: ":productId",
+            element: <ProductDetails />,
+          },
+        ],
       },
       {
-        path: ":categoryName/:productId",
+        path: ":productId",
         element: <ProductDetails />,
       },
     ],
