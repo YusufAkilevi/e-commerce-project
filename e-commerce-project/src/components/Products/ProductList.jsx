@@ -12,6 +12,7 @@ const ProductList = (props) => {
         ))}
       </div>
       {props.curPage <= props.maxPage && (
+<<<<<<< HEAD
         <div className="flex gap-2.5 justify-center items-center w-full mb-20 font-semibold">
           {props.curPage !== 1 && (
             <Button
@@ -21,6 +22,10 @@ const ProductList = (props) => {
               <FontAwesomeIcon icon={faArrowLeft} style={{ color: "#fff" }} />
             </Button>
           )}
+=======
+        <div className="flex gap-2.5 justify-center items-center w-full mb-20">
+          {props.curPage !== 1 && <Button onClick={props.onBack}>Back</Button>}
+>>>>>>> dev
           {props.curPage !== props.maxPage && (
             <Button
               className="bg-gradient-to-br from-[#8767e7] to-[#7209B7] hover:ring-1 hover:ring-purple-500"

@@ -31,7 +31,7 @@ const Header = () => {
             <div>
               <input
                 type="text"
-                className="pl-4 pr-2 w-full rounded-full focus:outline-none"
+                className="pl-4 pr-2 w-full focus:outline-none"
               />
             </div>
           </div>

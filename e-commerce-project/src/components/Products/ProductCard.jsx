@@ -21,9 +21,9 @@ const ProductCard = ({ product }) => {
       <Link to={`/${product.category}/${product.id}`}>
         <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
           <img
-            className="h-full w-full object-cover object-center lg:h-full lg:w-full"
             src={product.thumbnail}
             alt={product.title}
+            className="h-full w-full object-cover object-center lg:h-full lg:w-full"
           />
         </div>
 
@@ -31,8 +31,7 @@ const ProductCard = ({ product }) => {
           <h3 className="text-sm text-gray-700">{product.title}</h3>
           <p className=" text-sm text-gray-500">{product.brand}</p>
         </div>
-
-        <div className="flex items-end gap-1.5 text-gray-500 text-sm mt-1">
+        <div className="flex items-end gap-1.5 text-gray-500 text-sm">
           <Rating
             size={20}
             readonly
