@@ -11,13 +11,13 @@ const ProductCard = ({ product }) => {
 
     <div
       key={product.id}
-      className=" flex flex-col border rounded-md p-6 cursor-pointer"
+      className=" flex flex-col border border-1 rounded-md p-6 cursor-pointer  hover:border-purple-500 hover:shadow-2xl"
     >
       <Link to={`/${product.category}/${product.id}`}>
-        <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+        <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md lg:aspect-none group-hover:opacity-75 transform transition duration-500 hover:scale-110  lg:h-80">
 
           <img
-            className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+            className="h-full w-full object-scale-down object-center lg:h-full lg:w-full "
             src={product.thumbnail}
             alt={product.title}
           />
@@ -48,7 +48,7 @@ const ProductCard = ({ product }) => {
         </p>
       </Link>
       <div className="mt-auto w-full">
-        <Button className="flex items-center justify-center bg-[#4361EE] font-semibold py-3 text-sm text-white gap-2.5 w-full hover:bg-gray-400 hover:text-white">
+        <Button className="flex items-center justify-center bg-[#4361EE] font-semibold py-3 text-sm text-white gap-2.5 w-full hover:bg-green-600 hover:text-white">
           <FontAwesomeIcon icon={faCartShopping} style={{ color: "#fff" }} />
           <span>Add to Cart</span>
         </Button>
