@@ -3,21 +3,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping, faHeart } from "@fortawesome/free-solid-svg-icons";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
+import { useDispatch } from "react-redux";
 
 import Button from "../UI/Button";
-const getStockQuantity = (stock) => {
-  let options = [];
-  for (let i = 1; i <= stock; i++) {
-    options.push(
-      <option key={i} value={i}>
-        {i}
-      </option>
-    );
-  }
-  return options;
-};
+import { cartActions } from "../../store/cart-slice";
+
 const ProductDetailComp = ({ product }) => {
-  console.log(product);
+  const dispatch = useDispatch();
+
+  const addToCartHandler = () => {
+    dispatch(cartActions.addItemToCart(product));
+  };
   return (
     <div className="grid grid-cols-1fr lg:grid-cols-[3fr_2fr] mx-40 mb-20 shadow-lg  bg-slate-300 rounded ">
       <div className="justify-self-center p-10">
@@ -50,15 +46,18 @@ const ProductDetailComp = ({ product }) => {
             <p className="text-gray-500 text-md">{product.description}</p>
           </div>
           <div className="flex items-center gap-2.5 mt-10">
-            <select
+            {/* <select
               className="bg-white cursor-pointer rounded py-3 pl-2.5 pr-0 text-align-right   "
               name="quantity"
               id="quantity"
             >
               {getStockQuantity(product.stock)}
-            </select>
+            </select> */}
 
-            <Button className=" flex items-center justify-center gap-2.5 border-none  w-full bg-[#4361EE] font-semibold py-3 text-sm text-white gap-2.5 w-full hover:bg-[#7b90f3] hover:text-white">
+            <Button
+              onClick={addToCartHandler}
+              className=" flex items-center justify-center gap-2.5 border-none  w-full bg-[#4361EE] font-semibold py-3 text-sm text-white gap-2.5 w-full hover:bg-[#7b90f3] hover:text-white"
+            >
               <FontAwesomeIcon
                 icon={faCartShopping}
                 style={{ color: "#fff" }}

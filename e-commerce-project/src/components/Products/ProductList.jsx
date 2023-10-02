@@ -1,37 +1,71 @@
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
+import { fetchAllProductData } from "../../store/all-products-slice";
 import ProductCard from "./ProductCard";
 import Button from "../UI/Button";
+import Loading from "../UI/Loading";
+import { getTotalPageNumbers } from "../../utils/util";
+
+let maxPageNumber = 0;
+
 const ProductList = (props) => {
+  const dispatch = useDispatch();
+  const [currentPageNum, setCurrentPageNum] = useState(1);
+  useEffect(() => {
+    dispatch(fetchAllProductData(currentPageNum));
+  }, [dispatch, currentPageNum]);
+
+  const productData = useSelector((state) => state.allProducts.productData);
+  const loading = useSelector((state) => state.allProducts.loading);
+
+  if (!maxPageNumber) {
+    maxPageNumber = getTotalPageNumbers(productData.total, productData.limit);
+  }
+  const nextPageHandler = () => {
+    setCurrentPageNum((prevPage) => prevPage + 1);
+  };
+  const prevPageHandler = () => {
+    setCurrentPageNum((prevPage) => prevPage - 1);
+  };
+
   return (
-    <>
-      <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 mb-10">
-        {props.products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+    <div className="px-28 pt-20">
+      <div className="mt-6 grid  grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 mb-10">
+        {loading && (
+          <div className="col-span-full flex justify-center">
+            <Loading />
+          </div>
+        )}
+        {!loading &&
+          productData.products.length > 0 &&
+          productData?.products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
       </div>
-      {props.curPage <= props.maxPage && (
+      {currentPageNum <= maxPageNumber && (
         <div className="flex gap-2.5 justify-center items-center w-full mb-20 font-semibold">
-          {props.curPage !== 1 && (
+          {currentPageNum !== 1 && (
             <Button
               className="bg-gradient-to-br from-[#8767e7] to-[#7209B7] hover:ring-1 hover:ring-purple-500"
-              onClick={props.onBack}
+              onClick={prevPageHandler}
             >
               <FontAwesomeIcon icon={faArrowLeft} style={{ color: "#fff" }} />
             </Button>
           )}
-          {props.curPage !== props.maxPage && (
+          {currentPageNum !== maxPageNumber && (
             <Button
               className="bg-gradient-to-br from-[#8767e7] to-[#7209B7] hover:ring-1 hover:ring-purple-500"
-              onClick={props.onNext}
+              onClick={nextPageHandler}
             >
               <FontAwesomeIcon icon={faArrowRight} style={{ color: "#fff" }} />
             </Button>
           )}
         </div>
       )}
-    </>
+    </div>
   );
 };
 export default ProductList;
