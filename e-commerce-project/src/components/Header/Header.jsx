@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 
 const Header = () => {
   const cart = useSelector((state) => state.cart);
-  console.log(cart);
+
   return (
     <div className="flex flex-col gap-y-10 shadow-lg py-5 px-28">
       <div className="flex justify-around items-center pt-6">
