@@ -8,6 +8,7 @@ import Category from "./pages/Category";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
 import store from "./store";
+import Footer from "./components/Footer/Footer"
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,7 @@ function App() {
   return (
     <Provider store={store}>
       <RouterProvider router={router} />
+      <Footer/>
     </Provider>
   );
 }
