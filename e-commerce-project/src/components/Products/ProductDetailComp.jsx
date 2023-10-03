@@ -15,17 +15,20 @@ const ProductDetailComp = ({ product }) => {
     dispatch(cartActions.addItemToCart(product));
   };
   return (
-    <div className="grid grid-cols-1fr lg:grid-cols-[3fr_2fr] mx-40 mb-20 shadow-lg  bg-slate-300 rounded ">
-      <div className="justify-self-center p-10">
+    <div className="grid grid-cols-1fr lg:grid-cols-[3fr_2fr] mx-5 sm:mx-40 sm:mb-20 shadow-lg  bg-slate-300 rounded ">
+      <div className="justify-self-center p-2 sm:p-10  max-w-xs sm:max-w-fit">
         <Carousel>
           {product.images.map((image, i) => (
             <div key={i}>
-              <img className="max-h-96 object-contain rounded" src={image} />
+              <img
+                className=" sm:max-h-96 object-contain rounded"
+                src={image}
+              />
             </div>
           ))}
         </Carousel>
       </div>
-      <div className="p-10 bg-slate-200 rounded self-center flex justify-center flex-col h-full">
+      <div className="p-5 sm:p-10 bg-slate-200 rounded self-center flex justify-center flex-col h-full">
         <div>
           <h2 className="text-2xl font-bold color-gray-500">{product.title}</h2>
           <p className="text-gray-500">{product.brand}</p>

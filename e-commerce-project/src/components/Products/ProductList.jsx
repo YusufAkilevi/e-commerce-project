@@ -34,24 +34,23 @@ const ProductList = (props) => {
   };
 
   return (
-    <div className="px-28 pt-20">
+    <div className="pt-5 px-5 sm:px-28  sm:pt-20  ">
       <Carousel useKeyboardArrows={true}>
-    {productData.products && productData.products.length > 0 ? (
-      productData.products.map((product) => (
-        <Link to={`/${product.category}/${product.id}`} key={product.id}>
-          <div>
-            <img
-              src={product.thumbnail}
-              alt={`Product ${product.id}`}
-              className="max-h-96 object-contain rounded"
-            />
-          </div>
-        </Link>
-      ))
-    ) : (
-      <div>No products to display.</div>
-    )}
-  </Carousel>
+        {productData.products &&
+          productData.products.length > 0 &&
+          productData.products.map((product) => (
+            <Link to={`/${product.category}/${product.id}`} key={product.id}>
+              <div>
+                <img
+                  src={product.thumbnail}
+                  alt={`Product ${product.id}`}
+                  className="max-h-60 sm:max-h-96  object-contain rounded"
+                />
+              </div>
+            </Link>
+          ))}
+      </Carousel>
+
       <div className="mt-6 grid  grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 mb-10">
         {loading && (
           <div className="col-span-full flex justify-center">
