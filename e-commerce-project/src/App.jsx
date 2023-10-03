@@ -8,7 +8,8 @@ import Category from "./pages/Category";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
 import store from "./store";
-import Footer from "./components/Footer/Footer"
+import Footer from "./components/Footer/Footer";
+import ProductSearch from "./pages/ProductSearch";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
         path: "cart",
         element: <Cart />,
       },
+      { path: "search", element: <ProductSearch /> },
     ],
   },
 ]);
@@ -39,7 +41,7 @@ function App() {
   return (
     <Provider store={store}>
       <RouterProvider router={router} />
-      <Footer/>
+      <Footer />
     </Provider>
   );
 }

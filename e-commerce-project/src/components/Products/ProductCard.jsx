@@ -49,7 +49,7 @@ const ProductCard = ({ product }) => {
       <div className="mt-auto w-full">
         <Button
           onClick={addToCartHandler}
-          className="flex items-center justify-center bg-[#4361EE] font-semibold py-3 text-sm text-white gap-2.5 w-full hover:bg-[#7b90f3] hover:text-white"
+          className="flex items-center justify-center bg-[#4361EE] hover:bg-[#7b90f3] font-semibold py-3 text-sm text-white gap-2.5 w-full  hover:text-white"
         >
           <FontAwesomeIcon icon={faCartShopping} style={{ color: "#fff" }} />
           <span>Add to Cart</span>

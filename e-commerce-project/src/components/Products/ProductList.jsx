@@ -35,21 +35,23 @@ const ProductList = (props) => {
 
   return (
     <div className="pt-5 px-5 sm:px-28  sm:pt-20  ">
-      <Carousel useKeyboardArrows={true}>
-        {productData.products &&
-          productData.products.length > 0 &&
-          productData.products.map((product) => (
-            <Link to={`/${product.category}/${product.id}`} key={product.id}>
-              <div>
-                <img
-                  src={product.thumbnail}
-                  alt={`Product ${product.id}`}
-                  className="max-h-60 sm:max-h-96  object-contain rounded"
-                />
-              </div>
-            </Link>
-          ))}
-      </Carousel>
+      {currentPageNum === 1 && (
+        <Carousel useKeyboardArrows={true}>
+          {productData.products &&
+            productData.products.length > 0 &&
+            productData.products.map((product) => (
+              <Link to={`/${product.category}/${product.id}`} key={product.id}>
+                <div>
+                  <img
+                    src={product.thumbnail}
+                    alt={`Product ${product.id}`}
+                    className="max-h-60 sm:max-h-96  object-contain rounded"
+                  />
+                </div>
+              </Link>
+            ))}
+        </Carousel>
+      )}
 
       <div className="mt-6 grid  grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 mb-10">
         {loading && (
@@ -67,7 +69,7 @@ const ProductList = (props) => {
         <div className="flex gap-2.5 justify-center items-center w-full mb-20 font-semibold">
           {currentPageNum !== 1 && (
             <Button
-              className="bg-gradient-to-br from-[#8767e7] to-[#7209B7] hover:ring-1 hover:ring-purple-500"
+              className="bg-[#4361EE] hover:bg-[#7b90f3]"
               onClick={prevPageHandler}
             >
               <FontAwesomeIcon icon={faArrowLeft} style={{ color: "#fff" }} />
@@ -75,7 +77,7 @@ const ProductList = (props) => {
           )}
           {currentPageNum !== maxPageNumber && (
             <Button
-              className="bg-gradient-to-br from-[#8767e7] to-[#7209B7] hover:ring-1 hover:ring-purple-500"
+              className="bg-[#4361EE] hover:bg-[#7b90f3]"
               onClick={nextPageHandler}
             >
               <FontAwesomeIcon icon={faArrowRight} style={{ color: "#fff" }} />
