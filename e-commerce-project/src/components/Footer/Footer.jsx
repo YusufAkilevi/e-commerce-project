@@ -14,8 +14,8 @@ import {
 const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white py-4">
-      <div className="container mx-auto flex justify-between items-center">
-        <div className="w-12 ">
+      <div className="container mx-auto text-center md:flex md:justify-between">
+        <div className="mb-5 md:mb-0">
           <span className="text-xl font-bold">Futuristic Shop</span>
         </div>
         <div className="mb-5">
