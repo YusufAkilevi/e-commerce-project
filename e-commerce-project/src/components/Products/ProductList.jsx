@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
+import { Link } from "react-router-dom";
 import { fetchAllProductData } from "../../store/all-products-slice";
 import ProductCard from "./ProductCard";
 import Button from "../UI/Button";
@@ -33,6 +35,23 @@ const ProductList = (props) => {
 
   return (
     <div className="px-28 pt-20">
+      <Carousel useKeyboardArrows={true}>
+    {productData.products && productData.products.length > 0 ? (
+      productData.products.map((product) => (
+        <Link to={`/${product.category}/${product.id}`} key={product.id}>
+          <div>
+            <img
+              src={product.thumbnail}
+              alt={`Product ${product.id}`}
+              className="max-h-96 object-contain rounded"
+            />
+          </div>
+        </Link>
+      ))
+    ) : (
+      <div>No products to display.</div>
+    )}
+  </Carousel>
       <div className="mt-6 grid  grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 mb-10">
         {loading && (
           <div className="col-span-full flex justify-center">
