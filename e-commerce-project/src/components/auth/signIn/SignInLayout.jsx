@@ -8,7 +8,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import { useDispatch } from 'react-redux';
-import { signIn } from '../../../redux/actions/authActions/signInActions';
+// import { signIn } from '../../../redux/actions/authActions/signInActions';
 import { Link, useNavigate } from 'react-router-dom';
 
 const defaultTheme = createTheme();
@@ -23,7 +23,7 @@ export default function SignInLayout() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (email && password) {
-      dispatch(signIn(email, password, navigate));
+      // dispatch(signIn(email, password, navigate));
     } else {
       console.log('Please enter your e-mail and password!');
     }
