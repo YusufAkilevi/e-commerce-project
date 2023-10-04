@@ -4,13 +4,18 @@ import { Link, useNavigate } from "react-router-dom";
 import {
   faMagnifyingGlass,
   faCartShopping,
-  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import Logo from "../../logo.svg";
 import MainNavigation from "./MainNavigation";
 import { useSelector, useDispatch } from "react-redux";
 import { searchProductActions } from "../../store/search-product-slice";
+
+import { useAuth } from "../../components/auth/useAuth";
+
 const Header = () => {
+  const isAuthenticated = useSelector((state) => state.isAuthenticated);
+  const user = useSelector((state) => state.user);
+
   const inputRef = useRef();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -58,10 +63,19 @@ const Header = () => {
           </div>
         </form>
         <div className="flex justify-between items-center gap-x-4">
-          <button className="py-2 px-4x border relative gap-x-3 inline-flex items-center justify-center p-4 px-5 overflow-hidden text-white transition duration-300 ease-out rounded-xl shadow-xl group bg-[#4361EE] hover:bg-[#7b90f3] font-semibold">
-            <FontAwesomeIcon icon={faUser} style={{ color: "#fff" }} />
-            Profile
-          </button>
+          {isAuthenticated ? (
+            <div className="text-white font-semibold">
+              {user.email}
+            </div>
+          ) : (
+            <Link
+              to="/signin"
+              className="border flex items-center justify-center gap-x-3 p-4 px-5 py-2 overflow-hidden text-white transition duration-300 ease-out rounded-xl shadow-xl group bg-[#4361EE] hover:bg-[#7b90f3] font-semibold"
+            >
+              Sign In
+            </Link>
+          )}
+
           <Link
             to="/cart"
             className=" border flex items-center justify-center gap-x-3 p-4 px-5 py-2 overflow-hidden text-white transition duration-300 ease-out rounded-xl shadow-xl group bg-[#4361EE] hover:bg-[#7b90f3] font-semibold"
@@ -75,7 +89,7 @@ const Header = () => {
         </div>
       </div>
       <MainNavigation />
-    </div>
+    </div >
   );
 };
 export default Header;
