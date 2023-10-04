@@ -1,3 +1,4 @@
+import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 
@@ -10,6 +11,12 @@ import Cart from "./pages/Cart";
 import store from "./store";
 import Footer from "./components/Footer/Footer";
 import ProductSearch from "./pages/ProductSearch";
+import SignInLayout from "./components/auth/signIn/SignInLayout";
+import SignUpLayout from "./components/auth/signup/SignUpLayout";
+import ForgotPasswordLayout from "./components/auth/forgotPassword/ForgotPasswordLayout";
+
+// Rafet redux configure store ekleme denemesi
+// import configureStore from "./redux/reducers/store/configureStore"
 
 const router = createBrowserRouter([
   {
@@ -33,16 +40,34 @@ const router = createBrowserRouter([
         path: "cart",
         element: <Cart />,
       },
-      { path: "search", element: <ProductSearch /> },
+      {
+        path: "search",
+        element: <ProductSearch />
+      },
+      {
+        path: "signin",
+        element: <SignInLayout />
+      },
+      {
+        path: "signup",
+        element: <SignUpLayout />
+      },
+      {
+        path: "forgot-password",
+        element: <ForgotPasswordLayout />
+      },
     ],
   },
 ]);
+
 function App() {
   return (
-    <Provider store={store}>
-      <RouterProvider router={router} />
-      <Footer />
-    </Provider>
+    <React.StrictMode>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+        <Footer />
+      </Provider>
+    </React.StrictMode>
   );
 }
 
