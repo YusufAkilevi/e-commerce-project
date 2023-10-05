@@ -2,26 +2,32 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 
+// css
+import "./App.css";
+
+// redux
+import configureAppStore from "./redux/reducers/store/configureStore";
+
+// pages
 import RootLayout from "./pages/RootLayout";
 import HomePage from "./pages/HomePage";
-import "./App.css";
 import Category from "./pages/Category";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
-import store from "./store";
 import ProductSearch from "./pages/ProductSearch";
 import SignInLayout from "./components/auth/signIn/SignInLayout";
 import SignUpLayout from "./components/auth/signup/SignUpLayout";
 import ForgotPasswordLayout from "./components/auth/forgotPassword/ForgotPasswordLayout";
 
-// Rafet redux configure store ekleme denemesi
-// import configureStore from "./redux/reducers/store/configureStore"
+// components
+import Footer from "./components/Footer/Footer";
 
 const router = createBrowserRouter([
   {
     path: "/",
 
     element: <RootLayout />,
+
     children: [
       {
         index: true,
@@ -58,6 +64,8 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
+const store = configureAppStore();
 
 function App() {
   return (

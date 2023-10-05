@@ -12,9 +12,8 @@ import {
 import Logo from "../../logo.svg";
 import MainNavigation from "./MainNavigation";
 import { useSelector, useDispatch } from "react-redux";
-import { searchProductActions } from "../../store/search-product-slice";
+import { fetchSearchProductData } from "../../redux/slices/product/searchProductsSlice";
 import Button from "../UI/Button";
-import { useAuth } from "../../components/auth/useAuth";
 
 const Header = () => {
   const isAuthenticated = useSelector((state) => state.isAuthenticated);
@@ -29,7 +28,7 @@ const Header = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (inputRef.current.value.trim() !== "") {
-      dispatch(searchProductActions.getSearchParam(inputRef.current.value));
+      dispatch(fetchSearchProductData(inputRef.current.value));
       inputRef.current.value = "";
       navigate("/search");
     }
@@ -156,9 +155,11 @@ const Header = () => {
           >
             <FontAwesomeIcon icon={faCartShopping} style={{ color: "#fff" }} />
             Cart
-            <span className="bg-[#6981f1]  rounded-lg px-2">
-              {cart.totalQuantity}
-            </span>
+            {cart && (
+              <span className="bg-[#6981f1]  rounded-lg px-2">
+                {cart.totalQuantity}
+              </span>
+            )}
           </Link>
         </div>
       </div>

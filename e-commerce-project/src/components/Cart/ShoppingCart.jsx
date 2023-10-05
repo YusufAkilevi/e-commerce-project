@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import Button from "../UI/Button";
 import CartItem from "./CartItem";
@@ -20,8 +20,8 @@ const ShoppingCart = () => {
   return (
     <div className="w-full grid grid-cols-1 sm:grid-cols-[7fr_3fr] gap-10 py-5 px-5 sm:px-28  sm:py-20 ">
       <ul className="flex flex-col gap-5">
-        {cart.items.map((item) => (
-          <CartItem key={item.id} item={item} />
+        {cart.products.map((product) => (
+          <CartItem key={product.id} item={product} />
         ))}
       </ul>
       <div className="shadow-lg p-5 bg-slate-200 rounded self-start flex-auto">
