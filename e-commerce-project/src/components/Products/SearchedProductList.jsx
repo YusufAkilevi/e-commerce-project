@@ -9,7 +9,7 @@ const SearchedProductList = () => {
   const searchParam = useSelector(
     (state) => state.searchedProducts.searchParam
   );
-  console.log(searchParam);
+
   useEffect(() => {
     dispatch(fetchSearchProductData(searchParam));
   }, [dispatch, searchParam]);

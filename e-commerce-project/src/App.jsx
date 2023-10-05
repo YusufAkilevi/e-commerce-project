@@ -9,7 +9,6 @@ import Category from "./pages/Category";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
 import store from "./store";
-import Footer from "./components/Footer/Footer";
 import ProductSearch from "./pages/ProductSearch";
 import SignInLayout from "./components/auth/signIn/SignInLayout";
 import SignUpLayout from "./components/auth/signup/SignUpLayout";
@@ -42,19 +41,19 @@ const router = createBrowserRouter([
       },
       {
         path: "search",
-        element: <ProductSearch />
+        element: <ProductSearch />,
       },
       {
         path: "signin",
-        element: <SignInLayout />
+        element: <SignInLayout />,
       },
       {
         path: "signup",
-        element: <SignUpLayout />
+        element: <SignUpLayout />,
       },
       {
         path: "forgot-password",
-        element: <ForgotPasswordLayout />
+        element: <ForgotPasswordLayout />,
       },
     ],
   },
@@ -65,7 +64,6 @@ function App() {
     <React.StrictMode>
       <Provider store={store}>
         <RouterProvider router={router} />
-        <Footer />
       </Provider>
     </React.StrictMode>
   );
