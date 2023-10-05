@@ -6,10 +6,10 @@ import Button from "../UI/Button";
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
   const addItemToCartHandler = () => {
-    dispatch(cartActions.addItemToCart(item));
+    dispatch(cartActions.addToCart(item));
   };
   const removeItemFromCartHandler = () => {
-    dispatch(cartActions.removeItemFromCart(item.id));
+    dispatch(cartActions.removeFromCart(item.id));
   };
   return (
     <li

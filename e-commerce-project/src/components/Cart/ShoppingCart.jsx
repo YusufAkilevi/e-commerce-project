@@ -5,7 +5,7 @@ import CartItem from "./CartItem";
 const ShoppingCart = () => {
   const cart = useSelector((state) => state.cart);
 
-  if (cart.items.length === 0) {
+  if (cart.products.length === 0) {
     return (
       <div className="flex flex-col justify-center items-center font-semibold min-h-[55vh] p-5">
         <p className="text-xl text-center">Your cart is currently empty.</p>

@@ -50,13 +50,13 @@ const Header = () => {
     }
   }, [location]);
   const hideProfileClasses =
-    "flex sm:flex-row flex-col sm:justify-between sm:items-center gap-x-4 sm:static sm:top-auto sm:right-auto sm:translate-x-0 absolute top-0 right-0 translate-x-full transition-all";
+    "flex sm:flex-row flex-col sm:justify-between sm:items-center gap-x-4 sm:static sm:top-auto sm:right-auto sm:translate-x-0 absolute top-0 right-full  transition-all ";
   const showProfileClasses =
     "flex sm:flex-row flex-col sm:justify-between sm:items-center justify-center items-center gap-5 z-20  gap-x-4 sm:static sm:top-auto sm:right-auto  absolute top-0 bg-white sm:h-auto h-screen sm:w-auto w-full";
 
   return (
     <div className="flex flex-col gap-y-10 shadow-lg  sm:px-8 md:py-5 md:px-28 ">
-      <div className="sm:flex sm:justify-around sm:items-center pt-2 sm:pt-6 grid items-center justify-items-center grid-cols-3">
+      <div className="sm:flex sm:justify-around sm:items-center pt-2 sm:pt-6 grid items-center justify-items-center grid-cols-3 overflow-x-hidden">
         {showCategories && (
           <Button
             onClick={toggleCategoriesHandler}

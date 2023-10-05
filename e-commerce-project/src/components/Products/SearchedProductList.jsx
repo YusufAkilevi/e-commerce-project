@@ -6,18 +6,16 @@ import { useEffect } from "react";
 import { fetchSearchProductData } from "../../redux/slices/product/searchProductsSlice";
 const SearchedProductList = () => {
   const dispatch = useDispatch();
-  const searchParam = useSelector(
-    (state) => state.searchedProducts.searchParam
-  );
-  
+  const searchParam = useSelector((state) => state.searchProducts.searchParam);
+
   useEffect(() => {
     dispatch(fetchSearchProductData(searchParam));
   }, [dispatch, searchParam]);
 
   const searchedProducts = useSelector(
-    (state) => state.searchedProducts.productData
+    (state) => state.searchProducts.productData
   );
-  const loading = useSelector((state) => state.searchedProducts.loading);
+  const loading = useSelector((state) => state.searchProducts.loading);
 
   if (!loading && searchedProducts.products.length === 0) {
     return (
