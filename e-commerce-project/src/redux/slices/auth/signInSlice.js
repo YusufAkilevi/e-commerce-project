@@ -4,19 +4,26 @@ import { auth } from "../../reducers/firebase/firebase";
 
 export const signInAsync = createAsyncThunk(
     "auth/signIn",
-    async ({ email, password }) => {
-        const userCredential = await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+    async ({ email, password, navigate }) => {
+        try {
+            const userCredential = await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
 
-        const user = {
-            uid: userCredential.user.uid,
-            email: userCredential.user.email,
-        };
+            const user = {
+                uid: userCredential.user.uid,
+                email: userCredential.user.email,
+            };
 
-        return user;
+            navigate("/");
+
+            return user;
+        } catch (error) {
+            console.error(error.message);
+            throw error;
+        }
     }
 );
 

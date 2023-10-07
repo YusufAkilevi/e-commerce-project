@@ -1,15 +1,22 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../reducers/firebase/firebase";
 
 export const signUpAsync = createAsyncThunk(
     "auth/signUp",
-    async ({ email, password }) => {
-        const userCredential = await auth.firebaseCreateUser(email, password);
+    async ({ email, password, navigate }) => {
+        const userCredential = await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
 
         const user = {
             uid: userCredential.user.uid,
             email: userCredential.user.email,
         };
+
+        navigate("/");
 
         return user;
     }

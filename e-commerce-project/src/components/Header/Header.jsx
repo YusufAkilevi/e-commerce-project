@@ -1,3 +1,9 @@
+import * as React from "react";
+import MuiButton from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
+
 import { useRef, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
@@ -8,16 +14,24 @@ import {
   faCircleUser,
   faList,
   faCircleXmark,
+  faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
+
 import Logo from "../../logo.svg";
 import MainNavigation from "./MainNavigation";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchSearchProductData } from "../../redux/slices/product/searchProductsSlice";
+
 import Button from "../UI/Button";
 
+// slices
+import { fetchSearchProductData } from "../../redux/slices/product/searchProductsSlice";
+import { signOutAsync } from "../../redux/slices/auth/signOutSlice.js";
+import Dropdown from "./Dropdown";
+
+
 const Header = () => {
-  const isAuthenticated = useSelector((state) => state.isAuthenticated);
-  const user = useSelector((state) => state.user);
+  const isAuthenticated = useSelector((state) => state.signIn.isAuthenticated || state.signUp.isAuthenticated);
+  const user = useSelector((state) => state.signIn.user || state.signUp.user);
   const [showProfile, setShowProfile] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
 
@@ -53,6 +67,12 @@ const Header = () => {
     "flex sm:flex-row flex-col sm:justify-between sm:items-center gap-x-4 sm:static sm:top-auto sm:right-auto sm:translate-x-0 absolute top-0 right-full  transition-all ";
   const showProfileClasses =
     "flex sm:flex-row flex-col sm:justify-between sm:items-center justify-center items-center gap-5 z-20  gap-x-4 sm:static sm:top-auto sm:right-auto  absolute top-0 bg-white sm:h-auto h-screen sm:w-auto w-full";
+
+  const handleSignOut = () => {
+    dispatch(signOutAsync());
+    navigate("/");
+  }
+
 
   return (
     <div className="flex flex-col gap-y-10 shadow-lg  sm:px-8 md:py-5 md:px-28 ">
@@ -110,6 +130,7 @@ const Header = () => {
             />
           </Button>
         )}
+
         <form
           onSubmit={submitHandler}
           className="flex justify-between items-center sm:w-1/2 rounded col-span-full mx-2"
@@ -138,7 +159,25 @@ const Header = () => {
 
         <div className={showProfile ? showProfileClasses : hideProfileClasses}>
           {isAuthenticated ? (
-            <div className="text-white font-semibold">{user.email}</div>
+            <div className="flex items-center gap-2">
+              <PopupState variant="popover" popupId="user-popup-menu">
+                {(popupState) => (
+                  <React.Fragment>
+                    <MuiButton variant="contained" {...bindTrigger(popupState)}>
+                      {user.email}
+                    </MuiButton>
+                    <Menu {...bindMenu(popupState)}>
+                      <MenuItem onClick={popupState.close}>Profile</MenuItem>
+                      <MenuItem onClick={popupState.close}>My account</MenuItem>
+                      <MenuItem onClick={handleSignOut}>
+                        <FontAwesomeIcon icon={faSignOutAlt} className="mr-2" />
+                        Sign out
+                      </MenuItem>
+                    </Menu>
+                  </React.Fragment>
+                )}
+              </PopupState>
+            </div>
           ) : (
             <Link
               to="/signin"

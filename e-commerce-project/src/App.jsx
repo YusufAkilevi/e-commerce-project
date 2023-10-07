@@ -21,6 +21,7 @@ import ForgotPasswordLayout from "./components/auth/forgotPassword/ForgotPasswor
 
 // components
 import Footer from "./components/Footer/Footer";
+import ForgotPasswordNotificationlayout from "./components/auth/forgotPassword/ForgotPasswordNotificationLayout";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
         path: "forgot-password",
         element: <ForgotPasswordLayout />,
       },
+      {
+        path: "forgot-password-notification",
+        element: <ForgotPasswordNotificationlayout />,
+      }
     ],
   },
 ]);

@@ -10,6 +10,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch } from 'react-redux';
 // import { signIn } from '../../../redux/actions/authActions/signInActions';
 import { useNavigate } from 'react-router-dom';
+import { resetPasswordAsync } from '../../../redux/slices/auth/forgotPasswordSlice';
 
 const defaultTheme = createTheme();
 
@@ -22,7 +23,8 @@ export default function ForgotPasswordLayout() {
     event.preventDefault();
 
     if (email) {
-      // dispatch(signIn(email, navigate));
+      dispatch(resetPasswordAsync({ email, navigate }));
+
     } else {
       console.log('Please enter your e-mail and password!');
     }
@@ -68,6 +70,7 @@ export default function ForgotPasswordLayout() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               disabled={!email}
+              onClick={handleSubmit}
             >
               Send Password Reset Link
             </Button>
