@@ -14,6 +14,7 @@ const ProductDetailComp = ({ product }) => {
   const addToCartHandler = () => {
     dispatch(cartActions.addToCart(product));
   };
+
   return (
     <div className="grid grid-cols-1fr lg:grid-cols-[3fr_2fr] mx-5 sm:mx-40 sm:mb-20 shadow-lg  bg-slate-300 rounded ">
       <div className="justify-self-center p-2 sm:p-10  max-w-xs sm:max-w-fit">

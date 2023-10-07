@@ -18,7 +18,7 @@ const CategoryProductList = ({ category }) => {
   const loading = useSelector((state) => state.categoryProducts.loading);
 
   return (
-    <div className="pt-5 px-5 sm:px-28  sm:pt-20  ">
+    <div className={"pt-5 px-5 sm:px-8 sm:pt-10 md:px-28  md:pt-20"}>
       <div className="mt-6 grid  grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 mb-10">
         {loading && (
           <div className="col-span-full flex justify-center">
