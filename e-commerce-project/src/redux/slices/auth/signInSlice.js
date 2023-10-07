@@ -3,56 +3,56 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../reducers/firebase/firebase";
 
 export const signInAsync = createAsyncThunk(
-    "auth/signIn",
-    async ({ email, password }) => {
-        const userCredential = await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+  "auth/signIn",
+  async ({ email, password }) => {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
-        const user = {
-            uid: userCredential.user.uid,
-            email: userCredential.user.email,
-        };
+    const user = {
+      uid: userCredential.user.uid,
+      email: userCredential.user.email,
+    };
 
-        return user;
-    }
+    return user;
+  }
 );
 
 const signInSlice = createSlice({
-    name: "auth",
+  name: "auth",
 
-    initialState: {
-        isAuthenticated: false,
-        isLoading: false,
-        user: null,
-        error: null,
-    },
+  initialState: {
+    isAuthenticated: false,
+    isLoading: false,
+    user: null,
+    error: null,
+  },
 
-    reducers: {},
+  reducers: {},
 
-    extraReducers: (builder) => {
-        builder
-            // pending sign-in request
-            .addCase(signInAsync.pending, (state) => {
-                state.isLoading = true;
-            })
+  extraReducers: (builder) => {
+    builder
+      // pending sign-in request
+      .addCase(signInAsync.pending, (state) => {
+        state.isLoading = true;
+      })
 
-            // fulfilled sign-in request
-            .addCase(signInAsync.fulfilled, (state, action) => {
-                state.isAuthenticated = true;
-                state.user = action.payload;
-                state.error = null;
-            })
+      // fulfilled sign-in request
+      .addCase(signInAsync.fulfilled, (state, action) => {
+        state.isAuthenticated = true;
+        state.user = action.payload;
+        state.error = null;
+      })
 
-            // rejected sign-in request
-            .addCase(signInAsync.rejected, (state, action) => {
-                state.isAuthenticated = false;
-                state.user = null;
-                state.error = action.error.message;
-            });
-    },
+      // rejected sign-in request
+      .addCase(signInAsync.rejected, (state, action) => {
+        state.isAuthenticated = false;
+        state.user = null;
+        state.error = action.error.message;
+      });
+  },
 });
 
 export default signInSlice.reducer;

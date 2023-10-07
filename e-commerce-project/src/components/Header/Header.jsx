@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMagnifyingGlass,
   faCartShopping,
@@ -50,9 +50,9 @@ const Header = () => {
     }
   }, [location]);
   const hideProfileClasses =
-    "flex sm:flex-row flex-col sm:justify-between sm:items-center gap-x-4 sm:static sm:top-auto sm:right-auto sm:translate-x-0 absolute top-0 right-full  transition-all ";
+    "flex sm:flex-row flex-col sm:justify-between sm:items-center gap-x-4 sm:static sm:top-auto sm:right-auto sm:translate-x-0 absolute top-0 right-full  transition-all duration-300";
   const showProfileClasses =
-    "flex sm:flex-row flex-col sm:justify-between sm:items-center justify-center items-center gap-5 z-20  gap-x-4 sm:static sm:top-auto sm:right-auto  absolute top-0 bg-white sm:h-auto h-screen sm:w-auto w-full";
+    "flex sm:flex-row flex-col sm:justify-between sm:items-center justify-center items-center gap-5 z-20  gap-x-4 sm:static sm:top-auto sm:right-auto full absolute top-0 bg-white sm:h-auto h-screen sm:w-auto w-full transition-all duration-300";
 
   return (
     <div className="flex flex-col gap-y-10 shadow-lg  sm:px-8 md:py-5 md:px-28 ">

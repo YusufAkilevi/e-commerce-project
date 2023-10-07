@@ -14,7 +14,7 @@ const CartItem = ({ item }) => {
   return (
     <li
       key={item.id}
-      className="flex gap-5 p-5 border shadow-lg bg-slate-200 rounded"
+      className="flex  gap-5 p-5 border shadow-lg bg-slate-200 rounded"
     >
       <div className="max-w-xs max-h-36 bg-white p-2  border rounded">
         <img
