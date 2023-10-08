@@ -2,7 +2,7 @@ import * as React from "react";
 import MuiButton from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
+import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 
 import { useRef, useState, useEffect } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
@@ -28,9 +28,10 @@ import { fetchSearchProductData } from "../../redux/slices/product/searchProduct
 import { signOutAsync } from "../../redux/slices/auth/signOutSlice.js";
 import Dropdown from "./Dropdown";
 
-
-const Header = () => {
-  const isAuthenticated = useSelector((state) => state.signIn.isAuthenticated || state.signUp.isAuthenticated);
+const Header = (props) => {
+  const isAuthenticated = useSelector(
+    (state) => state.signIn.isAuthenticated || state.signUp.isAuthenticated
+  );
   const user = useSelector((state) => state.signIn.user || state.signUp.user);
   const [showProfile, setShowProfile] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
@@ -39,6 +40,7 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
+
   const submitHandler = (e) => {
     e.preventDefault();
     if (inputRef.current.value.trim() !== "") {
@@ -58,7 +60,8 @@ const Header = () => {
   useEffect(() => {
     if (
       (location.pathname === "/signin" && windowWidth < 640) ||
-      (location.pathname === "/cart" && windowWidth < 640)
+      (location.pathname === "/cart" && windowWidth < 640) ||
+      (location.pathname === "/my-orders" && windowWidth < 640)
     ) {
       toggleProfileHandler();
     }
@@ -71,8 +74,7 @@ const Header = () => {
   const handleSignOut = () => {
     dispatch(signOutAsync());
     navigate("/");
-  }
-
+  };
 
   return (
     <div className="flex flex-col gap-y-10 shadow-lg  sm:px-8 md:py-5 md:px-28 ">
@@ -163,12 +165,22 @@ const Header = () => {
               <PopupState variant="popover" popupId="user-popup-menu">
                 {(popupState) => (
                   <React.Fragment>
-                    <MuiButton variant="contained" {...bindTrigger(popupState)}>
+                    <MuiButton
+                      style={{ backgroundColor: "#4361EE" }}
+                      variant="contained"
+                      {...bindTrigger(popupState)}
+                    >
                       {user.email}
                     </MuiButton>
                     <Menu {...bindMenu(popupState)}>
-                      <MenuItem onClick={popupState.close}>Profile</MenuItem>
-                      <MenuItem onClick={popupState.close}>My account</MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          popupState.close();
+                          navigate("/my-orders");
+                        }}
+                      >
+                        My Orders
+                      </MenuItem>
                       <MenuItem onClick={handleSignOut}>
                         <FontAwesomeIcon icon={faSignOutAlt} className="mr-2" />
                         Sign out

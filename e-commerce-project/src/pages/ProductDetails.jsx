@@ -21,6 +21,7 @@ const ProductDetails = () => {
         <Loading />
       </div>
     );
+
   return (
     <div className="flex justify-center pt-5 sm:pt-20 ">
       {product.brand && <ProductDetailComp product={product} />}

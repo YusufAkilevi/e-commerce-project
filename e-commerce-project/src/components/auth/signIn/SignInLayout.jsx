@@ -7,15 +7,16 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import { useDispatch } from 'react-redux';
-import { signInAsync } from '../../../redux/slices/auth/signInSlice';
-import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { signInAsync } from "../../../redux/slices/auth/signInSlice";
+import { Link, useNavigate } from "react-router-dom";
+
 const defaultTheme = createTheme();
 
 export default function SignInLayout() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const loading = useSelector((state) => state.signIn.loading);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

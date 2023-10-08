@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
@@ -11,7 +11,7 @@ import {
   faCcPaypal,
 } from "@fortawesome/free-brands-svg-icons";
 import Logo from "../../logo.svg";
-const Footer = () => {
+const Footer = (props) => {
   return (
     <footer className="bg-gray-800 text-white py-4">
       <div className="container mx-auto text-center md:flex md:justify-between">
