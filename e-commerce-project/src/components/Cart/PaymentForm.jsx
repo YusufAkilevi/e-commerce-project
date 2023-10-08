@@ -1,21 +1,48 @@
 import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { cartActions } from "../../redux/slices/cart/cartSlice";
+import { useNavigate } from "react-router-dom";
 
-const PaymentForm = () => {
+const PaymentForm = (props) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const userName = useRef();
   const cardNumber = useRef();
   const expiryDate = useRef();
   const cvvNumber = useRef();
 
+  const cart = useSelector((state) => state.cart);
+
+  const userEmail = JSON.parse(localStorage.getItem("user")).email;
+
   const submitHandler = (e) => {
     e.preventDefault();
-    const userPaymentInfo = {
-      userName: userName?.current.value || "",
-      cardNumber: cardNumber?.current.value || "",
-      expiryDate: expiryDate?.current.value || "",
-      cvvNumber: cvvNumber?.current.value || "",
-    };
+    let userOrders = JSON.parse(localStorage.getItem("userOrders"));
 
-    console.log(userPaymentInfo);
+    let currentOrder = { ...cart, date: new Date() };
+
+    let newUserOrder = { [userEmail]: [currentOrder] };
+
+    if (userOrders) {
+      if (userOrders[userEmail]) {
+        userOrders[userEmail].push(currentOrder);
+        console.log(userOrders);
+      } else {
+        userOrders = { ...userOrders, ...newUserOrder };
+      }
+      localStorage.setItem("userOrders", JSON.stringify(userOrders));
+    } else {
+      localStorage.setItem("userOrders", JSON.stringify(newUserOrder));
+    }
+
+    dispatch(cartActions.clearCart());
+    localStorage.setItem(
+      "cart",
+      JSON.stringify({ products: [], totalAmount: 0, totalQuantity: 0 })
+    );
+    props.onClose();
+    navigate("/my-orders");
   };
   return (
     <form onSubmit={submitHandler} className="flex flex-col gap-10">

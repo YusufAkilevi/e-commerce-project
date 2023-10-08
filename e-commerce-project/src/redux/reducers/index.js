@@ -1,9 +1,10 @@
 import { combineReducers } from "redux";
 
 // Auth Slice
-import signInSlice from "../slices/auth/signInSlice";
-import signOutSlice from "../slices/auth/signOutSlice";
-import signUpSlice from "../slices/auth/signUpSlice";
+// import signInSlice from "../slices/auth/signInSlice";
+// import signOutSlice from "../slices/auth/signOutSlice";
+// import signUpSlice from "../slices/auth/signUpSlice";
+import authSlice from "../slices/auth/authSlice";
 
 // Cart Slice
 import cartSlice from "../slices/cart/cartSlice";
@@ -17,23 +18,24 @@ import singleProductSlice from "../slices/product/singleProductsSlice";
 import categoryProductsSlice from "../slices/categoryProductsSlice";
 
 const rootReducer = combineReducers({
-    // Reducers
+  // Reducers
 
-    // Auth Reducers
-    signIn: signInSlice,
-    signOut: signOutSlice,
-    signUp: signUpSlice,
+  // Auth Reducers
+  auth: authSlice,
+  // signIn: signInSlice,
+  // signOut: signOutSlice,
+  // signUp: signUpSlice,
 
-    // Cart Reducers
-    cart: cartSlice,
+  // Cart Reducers
+  cart: cartSlice,
 
-    // Product Reducers
-    allProducts: allProductsSlice,
-    searchProducts: searchProductsSlice,
-    singleProduct: singleProductSlice,
+  // Product Reducers
+  allProducts: allProductsSlice,
+  searchProducts: searchProductsSlice,
+  singleProduct: singleProductSlice,
 
-    // Category Product Reducers
-    categoryProducts: categoryProductsSlice,
+  // Category Product Reducers
+  categoryProducts: categoryProductsSlice,
 });
 
 export default rootReducer;

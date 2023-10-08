@@ -24,7 +24,6 @@ const ShoppingCart = () => {
   const hideModalHandler = () => {
     setShowModal(false);
   };
-  console.log(cart);
   return (
     <>
       <div className="w-full grid grid-cols-1 sm:grid-cols-[7fr_3fr] gap-10 py-5 px-5 sm:px-28  sm:py-20 ">
