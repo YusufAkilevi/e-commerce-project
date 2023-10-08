@@ -1,4 +1,5 @@
 import { useRef } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "../../redux/slices/cart/cartSlice";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +7,10 @@ import { useNavigate } from "react-router-dom";
 const PaymentForm = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+
+
+
 
   const userName = useRef();
   const cardNumber = useRef();
@@ -18,6 +23,7 @@ const PaymentForm = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+
     let userOrders = JSON.parse(localStorage.getItem("userOrders"));
 
     let currentOrder = { ...cart, date: new Date() };
@@ -43,7 +49,9 @@ const PaymentForm = (props) => {
     );
     props.onClose();
     navigate("/my-orders");
+
   };
+
   return (
     <form onSubmit={submitHandler} className="flex flex-col gap-10">
       <div className="flex flex-col ">

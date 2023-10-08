@@ -12,7 +12,7 @@ const ShoppingCart = () => {
       <div className="flex flex-col justify-center items-center font-semibold min-h-[55vh] p-5">
         <p className="text-xl text-center">Your cart is currently empty.</p>
         <p className="text-lg text-center">
-          To fill your cart from Futuristic Shop's world full of opportunities
+          To fill your cart from Futuristic Shop&apos;s world full of opportunities
           You can start examining the products.
         </p>
       </div>
