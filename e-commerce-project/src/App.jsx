@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 
 // css
 import "./App.css";
@@ -76,11 +76,11 @@ const store = configureAppStore();
 
 function App() {
   return (
-    <React.StrictMode>
-      <Provider store={store}>
-        <RouterProvider router={router} />
-      </Provider>
-    </React.StrictMode>
+    // <React.StrictMode>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+    /* </React.StrictMode> */
   );
 }
 

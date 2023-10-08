@@ -5,7 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 
 import { useRef, useState, useEffect } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMagnifyingGlass,
@@ -26,19 +26,17 @@ import Button from "../UI/Button";
 // slices
 import { fetchSearchProductData } from "../../redux/slices/product/searchProductsSlice";
 import { signOutAsync } from "../../redux/slices/auth/signOutSlice.js";
-import Dropdown from "./Dropdown";
-
 const Header = (props) => {
-  const isAuthenticated = useSelector(
-    (state) => state.signIn.isAuthenticated || state.signUp.isAuthenticated
-  );
-  const user = useSelector((state) => state.signIn.user || state.signUp.user);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const user = useSelector((state) => state.auth.user);
+
   const [showProfile, setShowProfile] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
 
   const inputRef = useRef();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const cart = useSelector((state) => state.cart);
 
   const submitHandler = (e) => {
@@ -57,13 +55,14 @@ const Header = (props) => {
   };
   const location = useLocation();
   const windowWidth = window.innerWidth;
+
   useEffect(() => {
     if (
       (location.pathname === "/signin" && windowWidth < 640) ||
       (location.pathname === "/cart" && windowWidth < 640) ||
       (location.pathname === "/my-orders" && windowWidth < 640)
     ) {
-      toggleProfileHandler();
+      if (showProfile) toggleProfileHandler();
     }
   }, [location]);
   const hideProfileClasses =

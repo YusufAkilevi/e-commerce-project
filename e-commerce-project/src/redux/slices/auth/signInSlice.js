@@ -17,7 +17,7 @@ export const signInAsync = createAsyncThunk(
         email: userCredential.user.email,
       };
 
-      navigate("/");
+      navigate(-1);
 
       return user;
     } catch (error) {
@@ -27,39 +27,41 @@ export const signInAsync = createAsyncThunk(
   }
 );
 
-const signInSlice = createSlice({
-  name: "auth",
+// const signInSlice = createSlice({
+//   name: "auth",
 
-  initialState: {
-    isAuthenticated: false,
-    isLoading: false,
-    user: null,
-    error: null,
-  },
+//   initialState: {
+//     isAuthenticated: false,
+//     isLoading: false,
+//     user: null,
+//     error: null,
+//   },
 
-  reducers: {},
+//   reducers: {},
 
-  extraReducers: (builder) => {
-    builder
-      // pending sign-in request
-      .addCase(signInAsync.pending, (state) => {
-        state.isLoading = true;
-      })
+//   extraReducers: (builder) => {
+//     builder
+//       // pending sign-in request
+//       .addCase(signInAsync.pending, (state) => {
+//         state.isLoading = true;
+//       })
 
-      // fulfilled sign-in request
-      .addCase(signInAsync.fulfilled, (state, action) => {
-        state.isAuthenticated = true;
-        state.user = action.payload;
-        state.error = null;
-      })
+//       // fulfilled sign-in request
+//       .addCase(signInAsync.fulfilled, (state, action) => {
+//         state.isAuthenticated = true;
+//         localStorage.setItem("isAuth", state.isAuthenticated);
+//         state.user = action.payload;
+//         localStorage.setItem("user", JSON.stringify(state.user));
+//         state.error = null;
+//       })
 
-      // rejected sign-in request
-      .addCase(signInAsync.rejected, (state, action) => {
-        state.isAuthenticated = false;
-        state.user = null;
-        state.error = action.error.message;
-      });
-  },
-});
+//       // rejected sign-in request
+//       .addCase(signInAsync.rejected, (state, action) => {
+//         state.isAuthenticated = false;
+//         state.user = null;
+//         state.error = action.error.message;
+//       });
+//   },
+// });
 
-export default signInSlice.reducer;
+// export default signInSlice.reducer;
