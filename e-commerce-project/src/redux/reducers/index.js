@@ -15,6 +15,7 @@ import singleProductSlice from "../slices/product/singleProductsSlice";
 
 // Category Product Slice
 import categoryProductsSlice from "../slices/categoryProductsSlice";
+import checkoutSlice from "../slices/cart/checkoutSlice";
 
 const rootReducer = combineReducers({
     // Reducers
@@ -26,6 +27,9 @@ const rootReducer = combineReducers({
 
     // Cart Reducers
     cart: cartSlice,
+
+    // Checkout Reducers
+    checkout: checkoutSlice,
 
     // Product Reducers
     allProducts: allProductsSlice,

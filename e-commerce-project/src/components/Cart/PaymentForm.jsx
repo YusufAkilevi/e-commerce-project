@@ -1,6 +1,14 @@
 import { useRef } from "react";
+import { addCheckoutAsync } from "../../redux/slices/cart/checkoutSlice";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const PaymentForm = () => {
+  const cart = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
+
   const userName = useRef();
   const cardNumber = useRef();
   const expiryDate = useRef();
@@ -8,15 +16,17 @@ const PaymentForm = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const userPaymentInfo = {
-      userName: userName?.current.value || "",
-      cardNumber: cardNumber?.current.value || "",
-      expiryDate: expiryDate?.current.value || "",
-      cvvNumber: cvvNumber?.current.value || "",
+    const checkoutData = {
+      userName: userName.current.value,
+      cardNumber: cardNumber.current.value,
+      expiryDate: expiryDate.current.value,
+      cvvNumber: cvvNumber.current.value,
     };
 
-    console.log(userPaymentInfo);
+
+    dispatch(addCheckoutAsync(cart.products, user?.uid));
   };
+
   return (
     <form onSubmit={submitHandler} className="flex flex-col gap-10">
       <div className="flex flex-col ">
